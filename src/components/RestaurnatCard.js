@@ -3,9 +3,7 @@ import { CDN_URL_RESTAURANT } from '../utils/constants';
 
 const RestaurnatCard = ({resData}) => {
 
-    const {name,cuisines,cloudinaryImageId,avgRating,sla}=resData?.info;
-
-    console.log(resData)
+    const {name,costForTwo,cuisines,cloudinaryImageId,avgRating,sla}=resData?.info;
 
     return (
             <div className="res-card">
@@ -13,6 +11,7 @@ const RestaurnatCard = ({resData}) => {
                 <h3>{name}</h3>
                 <h4>{cuisines.join(", ")}</h4>
                 <h4>{avgRating}⭐️</h4>
+                <h3>{costForTwo}</h3>
                 <h4>{sla.deliveryTime} min</h4>
             </div>    
 

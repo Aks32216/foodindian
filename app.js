@@ -1,4 +1,25 @@
-export const RESTAURANT_DATA = [
+import "./index.css";
+
+const Header = () => {
+    return (
+        <div className='header'>
+            <div className='logo-container'>
+                <img className="logo" src='https://img.freepik.com/premium-vector/indian-cuisine-spices-icon-with-culinary-seasoning_8071-9904.jpg' />
+            </div>
+            <div className="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Cart</li>
+
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+const restaurantData = [
     {
         "info": {
             "id": "393840",
@@ -208,7 +229,7 @@ export const RESTAURANT_DATA = [
                 "Fast Food",
                 "Street Food"
             ],
-            "avgRating": 3.6,
+            "avgRating": 4.2,
             "parentId": "376",
             "avgRatingString": "4.2",
             "totalRatingsString": "128",
@@ -492,7 +513,7 @@ export const RESTAURANT_DATA = [
                 "Portuguese",
                 "Continental"
             ],
-            "avgRating": 3.5,
+            "avgRating": 4.5,
             "parentId": "371281",
             "avgRatingString": "4.5",
             "totalRatingsString": "9.5K+",
@@ -670,7 +691,7 @@ export const RESTAURANT_DATA = [
                 "Snacks",
                 "Beverages"
             ],
-            "avgRating": 3.9,
+            "avgRating": 4.4,
             "parentId": "11633",
             "avgRatingString": "4.4",
             "totalRatingsString": "508",
@@ -769,3 +790,57 @@ export const RESTAURANT_DATA = [
         "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
     }
 ]
+
+const RestaurnatCard = ({resData}) => {
+
+    const {name,cuisines,cloudinaryImageId,avgRating,sla}=resData?.info;
+
+
+    return (
+            <div className="res-card">
+                <img className="res-logo" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+cloudinaryImageId} />
+                <h3>{name}</h3>
+                <h4>{cuisines.join(", ")}</h4>
+                <h4>{avgRating}⭐️</h4>
+                <h4>{sla.deliveryTime} min</h4>
+            </div>    
+
+    )
+}
+
+const Body = () => {
+    return (
+        <div className="body">
+            <div className="search">Search Bar</div>
+            <div className="res-container">
+                {
+                    restaurantData.map((restaurant,index)=>{
+                        return <RestaurnatCard resData={restaurant} key={restaurant.info.id} />
+                    })
+                }
+            </div>
+        </div>
+    )
+}
+
+const AppLayout = () => {
+    return (
+        <div className='app'>
+            <Header />
+            <Body />
+            {/* 
+                Header
+                Body
+                Footer
+            */}
+        </div>
+    )
+}
+
+const App = () => {
+    return (
+        <AppLayout />
+    )
+}
+
+export default App;
